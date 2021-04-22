@@ -1,4 +1,4 @@
-module multiplier (Z, X, Y);
+module CSAM (Z, X, Y);
 
         input logic [15:0] Y;
         input logic [15:0] X;

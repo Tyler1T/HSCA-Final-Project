@@ -1,0 +1,7 @@
+
+*.qdb
+*.qpg
+*.qtl
+transcript
+work/_info
+work/_vmake
