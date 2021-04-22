@@ -15,7 +15,7 @@ module stimulus();
 
 
   // Instantiate DUT
-  CSAM2C dut(answer, X, Y);
+  CSAM dut(answer, X, Y);
   always
     begin
       clk = 1; #5;
