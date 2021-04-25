@@ -7,7 +7,6 @@ module datapath(input   logic        clk, reset,
     CSAM multiplier(.Z(CSAM_register));
     flopr  #(32) output(.clk(clk),
                         .reset(reset),
-                        .en(MemSysReady),
                         .d(CSAM_register),
                         .q(result));
 endmodule
