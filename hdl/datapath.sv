@@ -4,7 +4,7 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
                 input   logic       [15:0] IA,
                 output  logic       [31:0] result);
 
-    logic [31:0] CSAM_register;
+    /*logic [31:0] CSAM_register;
     logic [15:0] gen_CSAM;
     logic [15:0] ndSel_CSAM;
     logic [15:0] kReg;
@@ -36,5 +36,9 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
     flopr  #(32) output(.clk(clk),
                         .reset(reset),
                         .d(CSAM_register),
-                        .q(result));
+                        .q(result));*/
+
+    CSAM multiplier(.Z(result),
+                    .X(N),
+                    .Y(D));
 endmodule
