@@ -5,15 +5,20 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
                 output  logic       [31:0] result);
 
     logic [31:0] CSAM_register;
+    logic [31:0] toRound;
     logic [15:0] gen_CSAM;
-    logic [15:0] ndSel_CSAM;
+    logic [15:0] ndSel_reg;
+    logic [15:0] ndReg_CSAM;
     logic [15:0] kReg;
 
     logic kEnable;
 
     assign kEnable = ~ndSelect;
+    assign result = toRound;
 
-    kGenerator kStuff(.previousK(result),
+    // Stage 1
+
+    kGenerator kStuff(.previousK(toRound),
                       .IA(IA),
                       .kSelect(kSelect),
                       .k(kReg));
@@ -24,22 +29,24 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
                         .d(kReg),
                         .q(gen_CSAM));
 
-    flopr  #(16) ndHolder(.clk(clk),
-                        .reset(reset),
-                        .d(kReg),
-                        .q(gen_CSAM));
-
     mux2 #(16) selecter(.d0(N),
                         .d1(D),
                         .s(ndSelect),
-                        .y(ndSel_CSAM));
+                        .y(ndSel_reg));
+
+    flopr  #(16) ndHolder(.clk(clk),
+                        .reset(reset),
+                        .d(ndSel_reg),
+                        .q(ndReg_CSAM));
+
+    // Stage 2
 
     CSAM multiplier(.Z(CSAM_register),
-                    .X(ndSel_CSAM),
+                    .X(ndReg_CSAM),
                     .Y(gen_CSAM));
 
     flopr  #(32) output(.clk(clk),
                         .reset(reset),
                         .d(CSAM_register),
-                        .q(result));
+                        .q(toRound));
 endmodule
