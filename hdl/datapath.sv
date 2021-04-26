@@ -18,7 +18,10 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
 
     // Stage 1
 
-    kGenerator kStuff(.previousK(toRound),
+    RNE rounder(.big(toRound),
+                .rounded(ready));
+
+    kGenerator kStuff(.previousK(ready),
                       .IA(IA),
                       .kSelect(kSelect),
                       .k(kReg));
