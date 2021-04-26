@@ -29,7 +29,7 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
 
     flopenr  #(16) kHolder(.clk(clk),
                         .reset(reset),
-                        .enable(kEnable),
+                        .en(kEnable),
                         .d(kReg),
                         .q(gen_CSAM));
 
