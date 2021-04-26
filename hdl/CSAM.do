@@ -27,7 +27,7 @@ if [file exists work] {
 vlib work
 
 # compile source files
-vlog *.sv
+vlog partialProduct.sv fullAdder.sv halfAdder.sv CSAM.sv CSAM_tb.sv
 
 # start and run simulation
 vsim -voptargs=+acc work.stimulus
