@@ -1,21 +1,23 @@
 module stimulus();
 
-  logic [3:0] Y;
-  logic [7:0] X;
-  logic [11:0] Z;
+  logic [15:0] N;
+  logic [15:0] D;
+  logic [31:0] Z;
 
-  logic [11:0] answer;
-  logic clk;
+  logic [31:0] answer;
+  logic clk, ndSelect, kSelect;
+  logic [15:0] IA;
+  logic [31:0] result;
 
   //for five vector numbers we need 3 bits
   logic [31:0] vectornum, errors;
 
   //the testvector file should be 5 rows each 27 bits wide
-  logic [26:0] testVector[5:0];
+  logic [63:0] testVector[5:0];
 
 
   // Instantiate DUT
-  CSAM dut(answer, X, Y);
+  datapath dut(clk, reset, kSelect, ndSelect, N, D, IA, result);
   always
     begin
       clk = 1; #5;
@@ -31,14 +33,14 @@ module stimulus();
   always @(posedge clk)
     begin
 
-      {Z, X, Y} = testVector[vectornum];
+      {answer, N, D} = testVector[vectornum];
     end
 
   always @(negedge clk)
     begin
     if(answer !== Z) begin
-      $display("Error: inputs for test X = %b Y = %b", X, Y);
-      $display("  outputs = %b (%b expected)", Z, answer);
+      $display("Error: inputs for test N = %b D = %b", N, D);
+      $display("  outputs = %b (%b expected)", result, answer);
       $display("");
       errors = errors + 1;
     end
