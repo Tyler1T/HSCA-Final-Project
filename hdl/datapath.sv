@@ -1,18 +1,28 @@
 module datapath(input   logic       clk, reset, kSelect, ndSelect,
-                input   logic       [31:0] N,
-                input   logic       [31:0] D,
+                input   logic       [15:0] N,
+                input   logic       [15:0] D,
                 input   logic       [15:0] IA,
                 output  logic       [31:0] result);
 
     logic [31:0] CSAM_register;
     logic [15:0] gen_CSAM;
     logic [15:0] ndSel_CSAM;
+    logic [15:0] kReg;
 
+    logic kEnable;
+
+    assign kEnable = ~ndSelect;
 
     kGenerator kStuff(.previousK(result),
-                      .IA(),
+                      .IA(IA),
                       .kSelect(kSelect),
-                      .k(gen_CSAM));
+                      .k(kReg));
+
+    flopenr  #(16) kHolder(.clk(clk),
+                        .reset(reset),
+                        .enable(kEnable),
+                        .d(kReg),
+                        .q(gen_CSAM));
 
     mux2 #(16) selecter(.d0(N),
                         .d1(D),
