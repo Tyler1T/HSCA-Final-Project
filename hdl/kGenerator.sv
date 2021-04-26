@@ -1,12 +1,13 @@
-module kGenerator(  input logic[31:0] previousK,
-                    input logic[31:0] IA,
+module kGenerator(  input logic[15:0] previousK,
+                    input logic[15:0] IA,
                     input logic kSelect,
-                    output logic[31:0] k);
+                    output logic[15:0] k);
 
-    logic [31:0] sum, between;
-    oneC #(32) negate(previousK, between);
+    logic [15:0] sum;
+    logic [15:0] between;
+    oneC #(16) negate(previousK, between);
     halfAdderChain adder(between, sum);
-    mux2 #(32) selecter(sum, IA, kSelect, k);
+    mux2 #(16) selecter(sum, IA, kSelect, k);
 
 
 endmodule

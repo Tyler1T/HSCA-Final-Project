@@ -10,6 +10,7 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
     logic [15:0] ndSel_reg;
     logic [15:0] ndReg_CSAM;
     logic [15:0] kReg;
+    logic [15:0] ready;
 
     logic kEnable;
 
@@ -48,8 +49,9 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
                     .X(ndReg_CSAM),
                     .Y(gen_CSAM));
 
-    flopr  #(32) output(.clk(clk),
+    flopr  #(32) CSAM_Reg(.clk(clk),
                         .reset(reset),
                         .d(CSAM_register),
                         .q(toRound));
+
 endmodule
