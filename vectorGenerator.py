@@ -24,5 +24,4 @@ if __name__ == '__main__':
         f.write("_")
         f.write(decimalToNBinary(y, 16))
         f.write("\n")
-        print()
     f.close()
