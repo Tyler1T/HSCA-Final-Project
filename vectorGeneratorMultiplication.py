@@ -11,6 +11,7 @@ def decimalToNBinary(q, n):
 # Driver code
 if __name__ == '__main__':
     f = open("hdl/testvector.tv", "w+")
+    dec = open("testvectordec.txt", "w+")
     x = 0
     y = 0
     z = 0
@@ -24,4 +25,9 @@ if __name__ == '__main__':
         f.write("_")
         f.write(decimalToNBinary(y, 16))
         f.write("\n")
+        dec.write(str(x) + " * ")
+        dec.write(str(y) + " = ")
+        dec.write(str(z))
+        dec.write("\n")
     f.close()
+    dec.close()
