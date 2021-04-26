@@ -29,8 +29,8 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
                         .d(kReg),
                         .q(gen_CSAM));
 
-    mux2 #(16) selecter(.d0(N),
-                        .d1(D),
+    mux2 #(16) selecter(.d0(D),
+                        .d1(N),
                         .s(ndSelect),
                         .y(ndSel_reg));
 
