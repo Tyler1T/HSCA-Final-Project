@@ -45,7 +45,7 @@ module stimulus();
     end
 
     vectornum = vectornum + 1;
-    if(vectornum === 4) begin
+    if(vectornum === 29) begin
       $display("%d tests completed with %d errors", vectornum + 1, errors);
     end
   end

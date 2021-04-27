@@ -7,7 +7,9 @@ import numpy as np
 # to Binary number
 
 def decimalToNBinary(q, n):
-    return format(q, "0" + str(n) + "b")
+    integer =
+    fractional =
+    return (interger + fractional)
 
 def intToBinary(n):
     return format(n, "02b")

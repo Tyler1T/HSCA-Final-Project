@@ -13,7 +13,7 @@ module stimulus();
   logic [31:0] vectornum, errors;
 
   //the testvector file should be 5 rows each 27 bits wide
-  logic [63:0] testVector[29:0];
+  logic [47:0] testVector[29:0];
 
 
   // Instantiate DUT
