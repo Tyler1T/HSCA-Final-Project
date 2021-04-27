@@ -9,6 +9,12 @@ import numpy as np
 def decimalToNBinary(q, n):
     return format(q, "0" + str(n) + "b")
 
+def intToBinary(n):
+    return format(n, "02b")
+
+def fracToBinary(n):
+    return format(n, "02b")
+
 # Driver code
 if __name__ == '__main__':
     f = open("hdl/testvector.tv", "w+")
@@ -17,8 +23,8 @@ if __name__ == '__main__':
     y = 0
     z = 0
     for i in range(0, 30):
-        x = random.randint(1, 65535)
-        y = random.randint(1, 65535)
+        x = random.uniform(0, 2)
+        y = random.uniform(0, 2)
         z = x / y
         f.write(decimalToNBinary(int(z), 32))
         f.write("_")

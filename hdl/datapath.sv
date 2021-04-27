@@ -2,7 +2,7 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
                 input   logic       [15:0] N,
                 input   logic       [15:0] D,
                 input   logic       [15:0] IA,
-                output  logic       [31:0] result);
+                output  logic       [15:0] result);
 
     logic [31:0] CSAM_register;
     logic [31:0] toRound;
@@ -15,7 +15,7 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
     logic kEnable;
 
     assign kEnable = ~ndSelect;
-    assign result = toRound;
+    assign result = ready;
 
     // Stage 1
 
