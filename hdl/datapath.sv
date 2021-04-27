@@ -19,9 +19,6 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
 
     // Stage 1
 
-    RNE rounder(.big(toRound),
-                .rounded(ready));
-
     kGenerator kStuff(.previousK(ready),
                       .IA(IA),
                       .kSelect(kSelect),
@@ -53,5 +50,8 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
                         .reset(reset),
                         .d(CSAM_register),
                         .q(toRound));
+
+    RNE rounder(.big(toRound),
+                .rounded(ready));
 
 endmodule
