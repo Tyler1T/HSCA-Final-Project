@@ -1,4 +1,4 @@
-module stimulus();
+/*module stimulus();
 
   logic [15:0] N;
   logic [15:0] D;
@@ -49,4 +49,4 @@ module stimulus();
       $display("%d tests completed with %d errors", vectornum + 1, errors);
     end
   end
-endmodule
+endmodule*/

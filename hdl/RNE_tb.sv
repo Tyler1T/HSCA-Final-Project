@@ -1,4 +1,4 @@
-module stimulus();
+/*module stimulus();
 
   logic [15:0] X;
   logic [31:0] Z;
@@ -15,11 +15,10 @@ module stimulus();
       clk = 0; #5;
     end
 
-  initial
-
   always @(posedge clk)
     begin
-        
+
     end
 
 endmodule
+*/

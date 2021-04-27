@@ -6,16 +6,57 @@ import numpy as np
 # Function to convert Decimal number
 # to Binary number
 
-def decimalToNBinary(q, n):
-    integer =
-    fractional =
-    return (interger + fractional)
+# Function to convert decimal to binary
+# upto k-precision after decimal point
+def decimalToBinary(num, k_prec) :
 
-def intToBinary(n):
-    return format(n, "02b")
+    binary = ""
 
-def fracToBinary(n):
-    return format(n, "02b")
+    # Fetch the integral part of
+    # decimal number
+    Integral = int(num)
+
+    # Fetch the fractional part
+    # decimal number
+    fractional = num - Integral
+
+    # Conversion of integral part to
+    # binary equivalent
+
+    rem = Integral % 2
+
+    # Append 0 in binary
+    binary += str(rem);
+
+
+    # Reverse string to get original
+    # binary equivalent
+    binary = binary[ : : -1]
+
+    # Append point before conversion
+    # of fractional part
+    binary += '.'
+
+    # Conversion of fractional part
+    # to binary equivalent
+    while (k_prec) :
+
+        # Find next bit in fraction
+        fractional *= 2
+        fract_bit = int(fractional)
+
+        if (fract_bit == 1) :
+
+            fractional -= fract_bit
+            binary += '1'
+
+        else :
+            binary += '0'
+
+        k_prec -= 1
+
+    return binary
+
 
 # Driver code
 if __name__ == '__main__':
@@ -28,11 +69,16 @@ if __name__ == '__main__':
         x = random.uniform(0, 2)
         y = random.uniform(0, 2)
         z = x / y
-        f.write(decimalToNBinary(int(z), 32))
+        while z > 2:
+            x = random.uniform(0, 2)
+            y = random.uniform(0, 2)
+            z = x / y
+
+        f.write(decimalToBinary(z, 16))
         f.write("_")
-        f.write(decimalToNBinary(x, 16))
+        f.write(decimalToBinary(x, 16))
         f.write("_")
-        f.write(decimalToNBinary(y, 16))
+        f.write(decimalToBinary(y, 16))
         f.write("\n")
         dec.write(str(x) + " / ")
         dec.write(str(y) + " = ")
