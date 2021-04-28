@@ -25,8 +25,6 @@ module stimulus();
       vectornum = 0; errors = 0;
     end
 
-      {answer, N, D} = testVector[vectornum];
-
     if(answer !== Z) begin
       $display("Error: inputs for test N = %b D = %b", N, D);
       $display("  outputs = %b (%b expected)", result, answer);

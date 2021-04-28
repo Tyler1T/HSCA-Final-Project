@@ -1,4 +1,5 @@
-module datapath(input   logic       clk, reset, kSelect, ndSelect,
+module datapath(input   logic              clk, reset, kSelect, 
+                input   logic       [1:0]  ndSelect,
                 input   logic       [15:0] N,
                 input   logic       [15:0] D,
                 input   logic       [15:0] IA,
@@ -30,8 +31,10 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
                         .d(kReg),
                         .q(gen_CSAM));
 
-    mux2 #(16) selecter(.d0(D),
+    mux4by16   selecter(.d0(D),
                         .d1(N),
+                        .d2(newD),
+                        .d3(newN),
                         .s(ndSelect),
                         .y(ndSel_reg));
 
@@ -49,10 +52,15 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
     RNE rounder(.big(CSAM_RNE),
                 .rounded(RNE_reg));
 
-    flopr  #(16) CSAM_Reg(.clk(clk),
+    flopenr  #(16) CSAM_Reg_N(.clk(clk),
                         .reset(reset),
                         .d(RNE_reg),
-                        .q(ready));
+                        .q(newN));
+
+    flopenr  #(16) CSAM_Reg_D(.clk(clk),
+                        .reset(reset),
+                        .d(RNE_reg),
+                        .q(newD));
 
 
 
