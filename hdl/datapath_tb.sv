@@ -2,6 +2,7 @@ module stimulus;
 
    reg [15:0]  D;
    reg [15:0]  N;
+   reg [15:0]  IA;
    reg 	      load_regN, load_regD;
    reg [1:0]  sel_ND_mux;
    reg        sel_K_mux;
@@ -11,12 +12,12 @@ module stimulus;
    integer     handle3;
    integer     desc3;
 
-   datapath dut1 (clk, reset, kSelect, ndSelect, N, D, IA, result);
+   datapath dut1 (clk, reset, sel_K_mux, sel_ND_mux, N, D, IA, result);
 
    initial
      begin
-	Clk = 1'b1;
-	forever #5 Clk = ~Clk;
+	   clk = 1'b1;
+	   forever #5 clk = ~clk;
      end
 
    initial
@@ -39,28 +40,25 @@ module stimulus;
 
 	#0  load_regN <= 1'b0;
 	#0  load_regD <= 1'b0;
-	#0  sel_ND_mux <= 2'b0;
+	#0  sel_ND_mux <= 2'b00;
 	#0  sel_K_mux <= 1'b0;
 
 	//S1:
-	#15 load_rega <= 1'b0;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b0;
-	#0  sel_muxa <= 2'b10;
-	#0  sel_muxb <= 2'b00;
-	#5  load_regD <= 1'b0;
-	#0  load_regb <= 1'b1;
-	#0  load_regc <= 1'b0;
+	#15  load_regN <= 1'b0;
+	#0  load_regD <= 1'b0;
+	#0  sel_ND_mux <= 2'b01;
+	#0  sel_K_mux <= 1'b0;
+	#5  load_regN <= 1'b0;
+	#0  load_regD <= 1'b1;
 
 	//S2:
-	#15 load_rega <= 1'b0;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b0;
-	#0  sel_muxa <= 2'b10;
-	#0  sel_muxb <= 2'b00;
-	#5  load_rega <= 1'b1;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b1;
+	#15  load_regN <= 1'b0;
+	#0  load_regD <= 1'b0;
+	#0  sel_ND_mux <= 2'b10;
+	#0  sel_K_mux <= 1'b1;
+	#5  load_regN <= 1'b0;
+	#0  load_regD <= 1'b1;
+/*
 
 	//S3:
 	#15 load_rega <= 1'b0;
@@ -101,7 +99,7 @@ module stimulus;
 	#5  load_rega <= 1'b1;
 	#0  load_regb <= 1'b0;
 	#0  load_regc <= 1'b1;
-
+*/
      end
 
 
