@@ -1,8 +1,6 @@
 module datapath(input   logic              clk, reset, kSelect,
                 input   logic       [1:0]  ndSelect,
-                input   logic       [15:0] N,
-                input   logic       [15:0] D,
-                input   logic       [15:0] IA,
+                input   logic       [15:0] N, D, IA,
                 output  logic       [15:0] result);
 
     // Stage 1
