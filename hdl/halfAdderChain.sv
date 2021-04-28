@@ -1,6 +1,6 @@
-module halfAdderChain(  input logic [15:0] oneC,
-                        output logic [15:0] toMux);
-    logic carry[15:0];
+module halfAdderChain(  input logic [18:0] oneC,
+                        output logic [18:0] toMux);
+    logic carry[18:0];
     half_adder CPA0(carry[0], toMux[0], oneC[0], 1'b0);
     half_adder CPA1(carry[1], toMux[1], oneC[1], 1'b1);
     half_adder CPA2(carry[2], toMux[2], oneC[2], carry[1]);
@@ -17,5 +17,8 @@ module halfAdderChain(  input logic [15:0] oneC,
     half_adder CPA13(carry[13], toMux[13], oneC[13], carry[12]);
     half_adder CPA14(carry[14], toMux[14], oneC[14], carry[13]);
     half_adder CPA15(carry[15], toMux[15], oneC[15], carry[14]);
+    half_adder CPA16(carry[16], toMux[16], oneC[16], carry[15]);
+    half_adder CPA17(carry[17], toMux[17], oneC[17], carry[16]);
+    half_adder CPA18(carry[18], toMux[18], oneC[18], carry[17]);
 
 endmodule
