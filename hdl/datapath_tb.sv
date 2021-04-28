@@ -18,11 +18,6 @@ module stimulus();
 
   // Instantiate DUT
   datapath dut(clk, reset, kSelect, ndSelect, N, D, IA, result);
-  always
-    begin
-      clk = 1; #5;
-      clk = 0; #5;
-    end
 
   initial
     begin
@@ -30,23 +25,13 @@ module stimulus();
       vectornum = 0; errors = 0;
     end
 
-  always @(posedge clk)
-    begin
       {answer, N, D} = testVector[vectornum];
-    end
 
-  always @(negedge clk)
-    begin
     if(answer !== Z) begin
       $display("Error: inputs for test N = %b D = %b", N, D);
       $display("  outputs = %b (%b expected)", result, answer);
       $display("");
       errors = errors + 1;
-    end
-
-    vectornum = vectornum + 1;
-    if(vectornum === 4) begin
-      $display("%d tests completed with %d errors", vectornum + 1, errors);
     end
   end
 endmodule

@@ -42,16 +42,18 @@ module datapath(input   logic       clk, reset, kSelect, ndSelect,
 
     // Stage 2
 
-    CSAM multiplier(.Z(CSAM_register),
+    CSAM multiplier(.Z(CSAM_RNE),
                     .X(ndReg_CSAM),
                     .Y(gen_CSAM));
 
-    flopr  #(32) CSAM_Reg(.clk(clk),
-                        .reset(reset),
-                        .d(CSAM_register),
-                        .q(toRound));
+    RNE rounder(.big(CSAM_RNE),
+                .rounded(RNE_reg));
 
-    RNE rounder(.big(toRound),
-                .rounded(ready));
+    flopr  #(16) CSAM_Reg(.clk(clk),
+                        .reset(reset),
+                        .d(RNE_reg),
+                        .q(ready));
+
+
 
 endmodule

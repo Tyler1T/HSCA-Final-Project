@@ -1,17 +1,17 @@
 module stimulus();
 
-  logic [15:0] Y;
-  logic [15:0] X;
-  logic [31:0] Z;
+  logic [18:0] Y;
+  logic [18:0] X;
+  logic [37:0] Z;
 
-  logic [31:0] answer;
+  logic [37:0] answer;
   logic clk;
 
   //for five vector numbers we need 3 bits
-  logic [63:0] vectornum, errors;
+  logic [76:0] vectornum, errors;
 
   //the testvector file should be 5 rows each 27 bits wide
-  logic [63:0] testVector[29:0];
+  logic [76:0] testVector[29:0];
 
 
   // Instantiate DUT
