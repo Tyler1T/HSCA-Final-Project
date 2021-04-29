@@ -4,7 +4,7 @@ module datapath(input   logic              clk, reset, kSelect,
                 output  logic       [15:0] result);
 
     wire [37:0] CSAM_RNE;
-    wire [18:0] RNE_reg, K_CSAM;
+    wire [18:0] RNE_reg, K_CSAM, newD, newN, num_CSAM, previousK;
     wire [15:0] regD, regN;
     wire [18:0] N19, D19, IA19;
     assign N19[18:3] = N;
@@ -17,7 +17,7 @@ module datapath(input   logic              clk, reset, kSelect,
 
 
     // Stage 1
-    kGenerator kStuff(.previousK(ready),
+    kGenerator kStuff(.previousK(newD),
                       .IA(IA19),
                       .kSelect(kSelect),
                       .k(K_CSAM));
@@ -27,8 +27,8 @@ module datapath(input   logic              clk, reset, kSelect,
                         .d1(N19),
                         .d2(newD),
                         .d3(newN),
-                        .s(ndSelect),
-                        .y(num_CSAM));
+                        .S(ndSelect),
+                        .Y(num_CSAM));
 
 
     // Stage 2
