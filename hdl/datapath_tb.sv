@@ -6,7 +6,7 @@ module stimulus;
    reg 	      load_regN, load_regD;
    reg [1:0]  sel_ND_mux;
    reg        sel_K_mux;
-   reg 	      clk;
+   reg 	      clk, reset;
    wire [15:0] result;
 
    integer     handle3;
@@ -23,7 +23,6 @@ module stimulus;
    initial
      begin
 	   handle3 = $fopen("datapath.out");
-	   #100 $finish;
      end
 
    always
@@ -35,14 +34,15 @@ module stimulus;
 
    initial
      begin
-        #0  reset = 1'b0;
+        #0  reset <= 1'b0;
 
-    	#0  D = 16'b0110_0000;  // 1.5
-    	#0  N = 16'b0101_0000;  // 1.25
+        //Number are: 1.0460665924473482 / 1.9831498889813877 = 0.5274773219409266
+    	#0  N = 16'b10000101111001011;
+    	#0  D = 16'b11111101110101111;
 
     	#0  load_regN <= 1'b0;
     	#0  load_regD <= 1'b0;
-    	#0  sel_ND_mux <= 2'b00;
+    	#0  sel_ND_mux <= 2'b0;
     	#0  sel_K_mux <= 1'b0;
 
     	//S1:
@@ -53,13 +53,13 @@ module stimulus;
     	#5  load_regN <= 1'b0;
     	#0  load_regD <= 1'b1;
 
-	//S2:
-	#15  load_regN <= 1'b0;
-	#0  load_regD <= 1'b0;
-	#0  sel_ND_mux <= 2'b10;
-	#0  sel_K_mux <= 1'b1;
-	#5  load_regN <= 1'b0;
-	#0  load_regD <= 1'b1;
+    	//S2:
+    	#15  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
+    	#0  sel_ND_mux <= 2'b10;
+    	#0  sel_K_mux <= 1'b1;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b1;
 /*
 
 	//S3:
