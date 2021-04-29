@@ -5,7 +5,7 @@ module datapath(input   logic              clk, reset, kSelect, nEnable, dEnable
 
     wire [37:0] CSAM_RNE;
     wire [18:0] RNE_reg, K_CSAM, newD, newN, num_CSAM, previousK;
-    wire [15:0] regD, regN;
+    wire [15:0] regD, regN, final_16;
     wire [18:0] N19, D19, IA19;
     assign N19[18:3] = N;
     assign N19[2:0] = 3'b000;
@@ -37,7 +37,7 @@ module datapath(input   logic              clk, reset, kSelect, nEnable, dEnable
                     .X(K_CSAM),
                     .Y(num_CSAM));
 
-    RNE rounder(.big(CSAM_RNE),
+    RNE19 rounder19(.big(CSAM_RNE),
                 .rounded(RNE_reg));
 
     flopenr  #(19) CSAM_Reg_N(.clk(clk),
@@ -52,6 +52,9 @@ module datapath(input   logic              clk, reset, kSelect, nEnable, dEnable
                         .d(RNE_reg),
                         .q(newD));
 
-    assign result = newD;
+    RNE16 rounder16(.big(newD),
+                .rounded(final_16));
+
+    assign result = final_16;
 
 endmodule
