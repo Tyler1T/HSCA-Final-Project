@@ -36,73 +36,91 @@ module stimulus;
      begin
         #0  reset <= 1'b0;
 
-        //Number are: 1.0460665924473482 / 1.9831498889813877 = 0.5274773219409266
+        //Numbers are: 1.0460665924473482 / 1.9831498889813877 = 0.5274773219409266
         #0  IA = 16'b01000000000000000;
     	#0  N = 16'b10000101111001011;
     	#0  D = 16'b11111101110101111;
 
-    	#0  load_regN <= 1'b0;
-    	#0  load_regD <= 1'b0;
-    	#0  sel_ND_mux <= 2'b0;
-    	#0  sel_K_mux <= 1'b1;
-
-    	//S1:
+    	//Cycle 1: IA * D
     	#15  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b1;
+    	#0  sel_ND_mux <= 2'b00;
+    	#0  sel_K_mux <= 1'b1;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b1;
+
+    	//Cycle 2: IA * N
+    	#15  load_regN <= 1'b1;
     	#0  load_regD <= 1'b0;
     	#0  sel_ND_mux <= 2'b01;
     	#0  sel_K_mux <= 1'b1;
     	#5  load_regN <= 1'b0;
-    	#0  load_regD <= 1'b1;
-
-    	//S2:
-    	#15  load_regN <= 1'b0;
     	#0  load_regD <= 1'b0;
+
+    	//Cycle 3: K1 * D
+    	#15  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b1;
     	#0  sel_ND_mux <= 2'b10;
     	#0  sel_K_mux <= 1'b0;
     	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
+
+    	//Cycle 4: K1 * N
+    	#15  load_regN <= 1'b1;
+    	#0  load_regD <= 1'b0;
+    	#0  sel_ND_mux <= 2'b11;
+    	#0  sel_K_mux <= 1'b0;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
+
+    	//Cycle 5: K2 * D
+    	#15  load_regN <= 1'b0;
     	#0  load_regD <= 1'b1;
-/*
+    	#0  sel_ND_mux <= 2'b10;
+    	#0  sel_K_mux <= 1'b0;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
 
-	//S3:
-	#15 load_rega <= 1'b0;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b0;
-	#0  sel_muxa <= 2'b00;
-	#0  sel_muxb <= 2'b10;
-	#5  load_rega <= 1'b0;
-	#0  load_regb <= 1'b1;
-	#0  load_regc <= 1'b0;
+    	//Cycle 6: K2 * N
+    	#15  load_regN <= 1'b1;
+    	#0  load_regD <= 1'b0;
+    	#0  sel_ND_mux <= 2'b11;
+    	#0  sel_K_mux <= 1'b0;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
 
-	//S4:
-	#15 load_rega <= 1'b0;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b0;
-	#0  sel_muxa <= 2'b00;
-	#0  sel_muxb <= 2'b11;
-	#5  load_rega <= 1'b1;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b1;
+    	//Cycle 7: K3 * D
+    	#15  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b1;
+    	#0  sel_ND_mux <= 2'b10;
+    	#0  sel_K_mux <= 1'b0;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
 
-	 //S4:
-	#15 load_rega <= 1'b0;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b0;
-	#0  sel_muxa <= 2'b00;
-	#0  sel_muxb <= 2'b10;
-	#5  load_rega <= 1'b0;
-	#0  load_regb <= 1'b1;
-	#0  load_regc <= 1'b0;
+    	//Cycle 8: K3 * N
+    	#15  load_regN <= 1'b1;
+    	#0  load_regD <= 1'b0;
+    	#0  sel_ND_mux <= 2'b11;
+    	#0  sel_K_mux <= 1'b0;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
 
-	 //S4:
-	#15 load_rega <= 1'b0;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b0;
-	#0  sel_muxa <= 2'b00;
-	#0  sel_muxb <= 2'b11;
-	#5  load_rega <= 1'b1;
-	#0  load_regb <= 1'b0;
-	#0  load_regc <= 1'b1;
-*/
+    	//Cycle 9: K4 * D
+    	#15  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b1;
+    	#0  sel_ND_mux <= 2'b10;
+    	#0  sel_K_mux <= 1'b0;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
+
+    	//Cycle 10: K4 * N
+    	#15  load_regN <= 1'b1;
+    	#0  load_regD <= 1'b0;
+    	#0  sel_ND_mux <= 2'b11;
+    	#0  sel_K_mux <= 1'b0;
+    	#5  load_regN <= 1'b0;
+    	#0  load_regD <= 1'b0;
+
      end
 
 
