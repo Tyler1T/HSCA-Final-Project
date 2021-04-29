@@ -1,4 +1,4 @@
-module datapath(input   logic              clk, reset, kSelect,
+module datapath(input   logic              clk, reset, kSelect, nEnable, dEnable,
                 input   logic       [1:0]  ndSelect,
                 input   logic       [15:0] N, D, IA,
                 output  logic       [15:0] result);

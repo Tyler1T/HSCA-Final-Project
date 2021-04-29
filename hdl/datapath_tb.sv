@@ -12,7 +12,7 @@ module stimulus;
    integer     handle3;
    integer     desc3;
 
-   datapath dut1 (clk, reset, sel_K_mux, sel_ND_mux, N, D, IA, result);
+   datapath dut1 (clk, reset, sel_K_mux, load_regN, load_regD, sel_ND_mux, N, D, IA, result);
 
    initial
      begin
@@ -37,19 +37,20 @@ module stimulus;
         #0  reset <= 1'b0;
 
         //Number are: 1.0460665924473482 / 1.9831498889813877 = 0.5274773219409266
+        #0  IA = 16'b01000000000000000;
     	#0  N = 16'b10000101111001011;
     	#0  D = 16'b11111101110101111;
 
     	#0  load_regN <= 1'b0;
     	#0  load_regD <= 1'b0;
     	#0  sel_ND_mux <= 2'b0;
-    	#0  sel_K_mux <= 1'b0;
+    	#0  sel_K_mux <= 1'b1;
 
     	//S1:
     	#15  load_regN <= 1'b0;
     	#0  load_regD <= 1'b0;
     	#0  sel_ND_mux <= 2'b01;
-    	#0  sel_K_mux <= 1'b0;
+    	#0  sel_K_mux <= 1'b1;
     	#5  load_regN <= 1'b0;
     	#0  load_regD <= 1'b1;
 
@@ -57,7 +58,7 @@ module stimulus;
     	#15  load_regN <= 1'b0;
     	#0  load_regD <= 1'b0;
     	#0  sel_ND_mux <= 2'b10;
-    	#0  sel_K_mux <= 1'b1;
+    	#0  sel_K_mux <= 1'b0;
     	#5  load_regN <= 1'b0;
     	#0  load_regD <= 1'b1;
 /*
