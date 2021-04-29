@@ -20,17 +20,17 @@ if __name__ == '__main__':
     x = 0
     y = 0
     z = 0
-    for i in range(0, 5):
-        print("What is the first number to multiply by?")
-        x = int(input())
-        print("What is the second number to multiply by?")
-        y = int(input())
-        z = x*y
-        f.write(decimalToNBinary(z, 32))
-        f.write("_")
-        f.write(decimalToNBinary(x, 16))
-        f.write("_")
-        f.write(decimalToNBinary(y, 16))
-        f.write("\n")
-        print()
+    #for i in range(0, 5):
+    print("What is the first number to multiply by?")
+    x = int(input())
+    print("What is the second number to multiply by?")
+    y = int(input())
+    z = x*y
+    f.write(decimalToNBinary(z, 32))
+    f.write("_")
+    f.write(decimalToNBinary(x, 16))
+    f.write("_")
+    f.write(decimalToNBinary(y, 16))
+    f.write("\n")
+    print()
     f.close()

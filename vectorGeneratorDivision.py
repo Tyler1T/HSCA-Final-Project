@@ -65,7 +65,7 @@ if __name__ == '__main__':
     x = 0
     y = 0
     z = 0
-    f.write("Q\t\tN\t\tD\n")
+    f.write("Q\t\t\t\t\tN\t\t\t\t\tD\n")
     for i in range(0, 30):
         x = random.uniform(0, 2)
         y = random.uniform(0, 2)

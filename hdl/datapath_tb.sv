@@ -11,6 +11,7 @@ module stimulus;
 
    integer     handle3;
    integer     desc3;
+   integer      counter = 0;
 
    datapath dut1 (clk, reset, sel_K_mux, load_regN, load_regD, sel_ND_mux, N, D, IA, result);
 
@@ -28,7 +29,7 @@ module stimulus;
    always
      begin
 	   desc3 = handle3;
-	   #15 $fdisplay(desc3, "%b %b %b", sel_ND_mux,
+	   #15 $fdisplay(desc3, "Cycle: %d\t%b %b %b", counter, sel_ND_mux,
 		     sel_K_mux, result);
      end
 
@@ -36,12 +37,13 @@ module stimulus;
      begin
         #0  reset <= 1'b0;
 
-        // Numbers are: 1.0460665924473482 / 1.9831498889813877 = 0.5274773219409266
-        // Result should be near 1.0111100111110101
-        #0  IA = 16'b01000000000000000;
-    	#0  N = 16'b10000101111001011;
-    	#0  D = 16'b11111101110101111;
+        // Numbers are: 1.5 / 1.25 = 0.5274773219409266
+        // Result should be near 1.2 or 1001100110001
+        #0  IA = 16'b01100000000000000;
+    	#0  N = 16'b11000000000000000;
+    	#0  D = 16'b10100000000000000;
 
+        cycle++;
     	//Cycle 1: IA * D
     	#4  load_regN <= 1'b0;
     	#0  load_regD <= 1'b1;

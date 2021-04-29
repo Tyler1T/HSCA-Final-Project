@@ -4,8 +4,8 @@ module datapath(input   logic              clk, reset, kSelect, nEnable, dEnable
                 output  logic       [15:0] result);
 
     wire [37:0] CSAM_RNE;
-    wire [18:0] RNE_reg, K_CSAM, newD, newN, num_CSAM, previousK;
-    wire [15:0] regD, regN, final_16;
+    wire [18:0] RNE_reg, K_CSAM, newD, newN, num_CSAM;
+    wire [15:0] final_16;
     wire [18:0] N19, D19, IA19;
     assign N19[18:3] = N;
     assign N19[2:0] = 3'b000;
