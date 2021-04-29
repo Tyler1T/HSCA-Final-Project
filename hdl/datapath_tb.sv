@@ -28,7 +28,7 @@ module stimulus;
    always
      begin
 	   desc3 = handle3;
-	   #5 $fdisplay(desc3, "%b %b %b", sel_ND_mux,
+	   #15 $fdisplay(desc3, "%b %b %b", sel_ND_mux,
 		     sel_K_mux, result);
      end
 
