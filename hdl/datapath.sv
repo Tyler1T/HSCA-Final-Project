@@ -47,13 +47,13 @@ module datapath(input   logic              clk, reset, kSelect, nEnable, dEnable
                         .q(newN));
 
     flopenr  #(19) CSAM_Reg_D(.clk(clk),
-                        .reset(reset),
-                        .en(dEnable),
-                        .d(RNE_reg),
-                        .q(newD));
+                                .reset(reset),
+                                .en(dEnable),
+                                .d(RNE_reg),
+                                .q(newD));
 
     RNE16 rounder16(.big(newD),
-                .rounded(final_16));
+                    .rounded(final_16));
 
     assign result = final_16;
 

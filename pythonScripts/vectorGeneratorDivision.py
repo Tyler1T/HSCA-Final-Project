@@ -60,7 +60,7 @@ def decimalToBinary(num, k_prec) :
 
 # Driver code
 if __name__ == '__main__':
-    f = open("hdl/testvector.tv", "w+")
+    f = open("../hdl/testvector.tv", "w+")
     dec = open("testvectordec.txt", "w+")
     x = 0
     y = 0
