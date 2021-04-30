@@ -28,8 +28,7 @@ module stimulus;
    always
      begin
 	   desc3 = handle3;
-	   #15 $fdisplay(desc3, "%b %b %b", sel_ND_mux,
-		     sel_K_mux, result);
+	   #15 $fdisplay(desc3, "%b %b %b", sel_ND_mux, sel_K_mux, result);
      end
 
    initial
@@ -38,9 +37,9 @@ module stimulus;
 
         // Numbers are: 1.5 / 1.25 = 0.5274773219409266
         // Result should be near 1.2 or 1001100110001
-        #0  IA = 16'b1000_0000_0000_0000;
+        #0  IA = 16'b1010_0000_0000_0000;
     	#0  N = 16'b1100_0000_0000_0000;
-    	#0  D = 16'b1010_0000_0000_0000;
+    	#0  D = 16'b1000_0000_0000_0000;
 
     	//Cycle 1: IA * D
     	#4  load_regN <= 1'b0;

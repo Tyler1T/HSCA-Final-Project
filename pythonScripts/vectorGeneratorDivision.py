@@ -67,12 +67,12 @@ if __name__ == '__main__':
     z = 0
     f.write("Q\t\t\t\t\tN\t\t\t\t\tD\n")
     for i in range(0, 30):
-        x = random.uniform(0, 2)
-        y = random.uniform(0, 2)
+        x = random.uniform(1, 2)
+        y = random.uniform(1, 2)
         z = x / y
         while z > 2:
-            x = random.uniform(0, 2)
-            y = random.uniform(0, 2)
+            x = random.uniform(1, 2)
+            y = random.uniform(1, 2)
             z = x / y
 
         f.write(decimalToBinary(z, 16))
