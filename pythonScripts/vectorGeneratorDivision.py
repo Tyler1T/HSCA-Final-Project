@@ -35,7 +35,6 @@ def decimalToBinary(num, k_prec) :
 
     # Append point before conversion
     # of fractional part
-    binary += '.'
 
     # Conversion of fractional part
     # to binary equivalent
@@ -65,10 +64,11 @@ if __name__ == '__main__':
     x = 0
     y = 0
     z = 0
-    f.write("Q\t\t\t\t\tN\t\t\t\t\tD\n")
+    IA = 0
     for i in range(0, 30):
         x = random.uniform(1, 2)
         y = random.uniform(1, 2)
+        IA = random.uniform(1, 2)
         z = x / y
         while z > 2:
             x = random.uniform(1, 2)
@@ -81,9 +81,10 @@ if __name__ == '__main__':
         f.write("_")
         f.write(decimalToBinary(y, 16))
         f.write("\n")
-        dec.write(str(x) + " / ")
-        dec.write(str(y) + " = ")
-        dec.write(str(z))
-        dec.write("\n")
+        dec.write(r"// Test " + str(i) + "\n" + "// Numbers are: " + str(x) + " / " + str(y) + " = " + str(z) + "\n" + "// Result should be near 1.2 or 1001100110001\n\n")
+        dec.write("#0 IA = 16'b" + decimalToBinary(IA, 16) + ";\n")
+        dec.write("#0 N = 16'b" + decimalToBinary(x, 16) + ";\n")
+        dec.write("#0 D = 16'b" + decimalToBinary(y, 16) + ";\n\n\n")
+
     f.close()
     dec.close()
